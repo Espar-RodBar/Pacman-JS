@@ -208,11 +208,11 @@ main {
 /* 370px */
 @media (max-width: 23em) {
   .game--grid {
-    height: 33.6rem;
-    width: 33.6rem;
+    height: 30.8rem;
+    width: 30.8rem;
   }
   .square {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.1rem;
+    height: 1.1rem;
   }
 }
