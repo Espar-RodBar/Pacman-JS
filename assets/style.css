@@ -1,0 +1,150 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+header {
+  margin: 0 auto;
+  padding: 2rem 40rem;
+  background-color: blueviolet;
+  display: grid;
+  column-gap: 10rem;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+h1 {
+  font-size: 3rem;
+  grid-column: 1/5;
+}
+p {
+  font-size: 2rem;
+  grid-row: 2/3;
+}
+main {
+  position: relative;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: rgb(34, 34, 48);
+  border-radius: 15%;
+}
+
+.game--grid {
+  margin: 2rem auto;
+  height: 56rem;
+  width: 56rem;
+  background-color: aqua;
+  display: grid;
+  grid-template-columns: repeat(28, 1fr);
+}
+
+.square {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+}
+.pac-dot {
+  background: linear-gradient(white, rgb(219, 218, 216));
+  border: 0.5rem solid aqua;
+
+  border-radius: 50%;
+}
+.wall {
+  background-color: blue;
+}
+.ghost-lair {
+  background-color: aqua;
+}
+.power-pellet {
+  border: 0.2rem solid aqua;
+  background: linear-gradient(rgb(255, 255, 157), rgb(253, 209, 126));
+  border-radius: 50%;
+}
+
+.pacman {
+  border-radius: 50%;
+  background: linear-gradient(yellow, orangered);
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 60%, 50% 50%, 100% 0%);
+}
+
+.pacman-powerup {
+  background: linear-gradient(white, yellow);
+}
+
+.ghost {
+  border-radius: 0;
+  border-top-left-radius: 25%;
+  border-top-right-radius: 25%;
+  border: none;
+}
+.ghost_pink {
+  background: linear-gradient(rgb(250, 152, 224), rgb(242, 86, 203));
+}
+.ghost_red {
+  background: linear-gradient(rgb(255, 69, 69), rgb(147, 3, 3));
+}
+.ghost_green {
+  background: linear-gradient(rgb(142, 255, 146), rgb(17, 140, 13));
+}
+.ghost_black {
+  background: linear-gradient(rgb(70, 70, 70), rgb(21, 21, 21));
+}
+.ghost_scared {
+  background: linear-gradient(rgb(255, 255, 255), rgb(210, 170, 255));
+}
+
+.buttons--group--left {
+  position: absolute;
+  bottom: 5rem;
+  left: 10rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+.buttons--group--right {
+  bottom: 7rem;
+  right: 5rem;
+  position: absolute;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  font-size: 3.2rem;
+  background-color: orangered;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.341);
+}
+
+.modal {
+  width: 50rem;
+  height: 10rem;
+  margin: 30% auto;
+  border-radius: 25px;
+  background-color: black;
+  text-align: center;
+  justify-content: center;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.hidden {
+  display: none;
+}
