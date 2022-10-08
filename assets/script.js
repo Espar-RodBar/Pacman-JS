@@ -190,6 +190,8 @@ btnLeftEl.addEventListener("touchstart", leftHandler);
 btnRightEl.addEventListener("touchstart", rightHandler);
 btnUpEl.addEventListener("touchstart", upHandler);
 
+document.body.addEventListener("touchstart", (e) => e.preventDefault());
+
 function downHandler(e) {
   e.preventDefault();
   arrowDown();
