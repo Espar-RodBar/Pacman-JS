@@ -185,10 +185,27 @@ tabletopSquares[489].classList.add("pacman");
 // Key Events to move pacman:
 
 // Touch
-btnDownEl.addEventListener("touchstart", arrowDown);
-btnLeftEl.addEventListener("touchstart", arrowLeft);
-btnRightEl.addEventListener("touchstart", arrowRight);
-btnUpEl.addEventListener("touchstart", arrowUp);
+btnDownEl.addEventListener("touchstart", downHandler);
+btnLeftEl.addEventListener("touchstart", leftHandler);
+btnRightEl.addEventListener("touchstart", rightHandler);
+btnUpEl.addEventListener("touchstart", upHandler);
+
+function downHandler(e) {
+  e.preventDefault();
+  arrowDown();
+}
+function upHandler(e) {
+  e.preventDefault();
+  arrowUp();
+}
+function leftHandler(e) {
+  e.preventDefault();
+  arrowLeft();
+}
+function rightHandler(e) {
+  e.preventDefault();
+  arrowRight();
+}
 
 // Keyboard
 document.body.addEventListener("keydown", eventHandler);
