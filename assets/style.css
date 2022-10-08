@@ -206,13 +206,13 @@ main {
 }
 
 /* 370px */
-/* @media (max-width: 23em) {
+@media (max-width: 23em) {
   .game--grid {
-    height: 28rem;
-    width: 28rem;
+    height: 33.6rem;
+    width: 33.6rem;
   }
   .square {
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
   }
-} */
+}
