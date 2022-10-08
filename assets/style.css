@@ -148,3 +148,34 @@ main {
 .hidden {
   display: none;
 }
+
+@media (max-width: 56.25em) {
+  header {
+    padding: 0 30rem;
+  }
+  main {
+    padding-bottom: 18rem;
+  }
+}
+@media (max-width: 43em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 31.25em) {
+  header {
+    padding: 0 20rem;
+  }
+  main {
+    padding-bottom: 30rem;
+  }
+  .game--grid {
+    height: 42rem;
+    width: 42rem;
+  }
+  .square {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
