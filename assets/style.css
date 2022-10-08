@@ -8,16 +8,20 @@ html {
 }
 header {
   margin: 0 auto;
-  padding: 2rem 40rem;
+  padding: 2rem;
   background-color: blueviolet;
-  display: grid;
-  column-gap: 10rem;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
   font-size: 3rem;
-  grid-column: 1/5;
+  grid-column: 1/3;
+}
+.score_container {
+  display: flex;
+  gap: 1rem;
 }
 p {
   font-size: 2rem;
@@ -28,7 +32,7 @@ main {
   padding: 1rem;
   margin: 1rem;
   background-color: rgb(34, 34, 48);
-  border-radius: 15%;
+  border-radius: 10rem;
 }
 
 .game--grid {
@@ -149,26 +153,47 @@ main {
   display: none;
 }
 
+/* 900px */
 @media (max-width: 56.25em) {
   header {
-    padding: 0 30rem;
+    padding: 1rem;
   }
   main {
     padding-bottom: 18rem;
   }
 }
+
+/* 688px */
 @media (max-width: 43em) {
   html {
     font-size: 50%;
   }
+  main {
+    border-radius: 6rem;
+    padding-bottom: 25rem;
+  }
+  .btn {
+    width: 9rem;
+    height: 9rem;
+  }
+  .buttons--group--left {
+    left: 3vw;
+  }
+  .buttons--group--right {
+    right: 3vw;
+  }
 }
 
+/* 500px */
 @media (max-width: 31.25em) {
   header {
-    padding: 0 20rem;
+    padding: 0.5rem;
   }
   main {
-    padding-bottom: 30rem;
+    border-radius: 6rem;
+    /* padding-bottom: 25rem; */
+    padding-top: 5vh;
+    padding-bottom: 25vh;
   }
   .game--grid {
     height: 42rem;
@@ -179,3 +204,15 @@ main {
     height: 1.5rem;
   }
 }
+
+/* 370px */
+/* @media (max-width: 23em) {
+  .game--grid {
+    height: 28rem;
+    width: 28rem;
+  }
+  .square {
+    width: 1rem;
+    height: 1rem;
+  }
+} */
