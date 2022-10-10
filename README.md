@@ -8,31 +8,21 @@ This project was built after seeing the walkthrough made by Ania Kubov.
 
 Some parts are made with a little different aproach.
 
-Watch Ania's full video walkthrough!! [here](https://youtu.be/XD5sZWxwJUk)
+Watch Ania's full video walkthrough!! [here](https://www.youtube.com/watch?v=CeUGlSl2i4Q)
 
 In this project we use:
 
-- the drag and drop events
-- addEventListener
-- setInterval
-- setTimeOut
-- every
-- forEach
-- filter
-- map
-- insertAdjacentElement
-- unshift
-- Maths.abs
-- Math.random
-- Math.floor
-- rest arguments in functions
-- Audio
-
-And some DOM manipulation.
-
-Added functionality for touch screen:
-
+- Dom manipulation
 - touchstart event
-- touchend event
-- changedTouches for getting position
-- elementFrontPoint()
+- addEventListener
+- classList.add/contains/remove
+- Use of some classes (ghosts)
+- Array .push and .shift elements
+- setIntervals
+- clearIntervals
+- use this. and bind()
+- .find()
+- forEach()
+- .indexOf()
+
+For the ghost, they have two movements, one for exiting the ghost lair, and the chase mode.
