@@ -6,6 +6,9 @@
 html {
   font-size: 62.5%;
 }
+body {
+  touch-action: manipulation;
+}
 header {
   margin: 0 auto;
   padding: 2rem;

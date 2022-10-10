@@ -85,7 +85,7 @@ layout.forEach((square, i) => {
 
 // PacHunters Ghost!
 class Ghost {
-  constructor(classCss, startSquareIndex, speed, tabletopSqrs) {
+  constructor(classCss, startSquareIndex, speed, tabletopSqrs, outLairPoint) {
     this.classCss = classCss;
     this.classMain = "ghost";
     this.startSquareIndex = startSquareIndex;
@@ -93,7 +93,8 @@ class Ghost {
     this.speed = speed;
     this.tabletopSqrs = tabletopSqrs;
     this.isScared = false;
-    this.lastDirection = null;
+    this.lastDirections = [null];
+    this.outLairPoint = outLairPoint;
   }
 
   // calculate next random movement trying to not go back
@@ -106,31 +107,39 @@ class Ghost {
       position - width,
     ];
     let nextRandomDirections = [];
+    let pacmanPos = getPacmanIndex(tabletopSquares);
 
     directions.forEach((direction) => {
       if (
         !isWall(this.tabletopSqrs[direction]) &&
         !isGhost(this.tabletopSqrs[direction]) &&
-        direction != position
+        direction != position &&
+        !this.lastDirections?.includes(direction)
       ) {
         nextRandomDirections.push(direction);
       }
     });
 
-    // add to the nextRandomdirction the last direction multiple times to stick in that way at a high %
-    if (this.lastDirection) {
-      nextRandomDirections.push(this.lastDirection);
-      nextRandomDirections.push(this.lastDirection);
-      nextRandomDirections.push(this.lastDirection);
-    }
+    // if elements nextRandomDirections >6, shift 1 element
+    if (this.lastDirections.length > 6) this.lastDirections.shift();
 
-    const newPosition =
-      nextRandomDirections[
-        Math.floor(Math.random() * nextRandomDirections.length)
-      ];
+    // if ghost is in the ghostLair, first exit there
+    if (isGhostLair(this.tabletopSqrs[position])) pacmanPos = this.outLairPoint;
 
-    // remember the last movement
-    this.lastDirection = newPosition;
+    const newPosition = getCloserDirectionToB(
+      nextRandomDirections,
+      pacmanPos,
+      width
+    );
+    console.log(newPosition);
+    // remember the new movement
+    this.lastDirections.push(newPosition);
+    console.log(this.lastDirections);
+
+    // guard clause
+    if (!position || !newPosition) return;
+
+    // change the CSS from the squares -> moving the ghost
     if (this.tabletopSqrs[position].classList.contains("ghost_scared")) {
       this.tabletopSqrs[position].classList.remove("ghost_scared");
       this.tabletopSqrs[newPosition].classList.add("ghost_scared");
@@ -140,8 +149,11 @@ class Ghost {
 
     this.currentSquareIndex = newPosition;
 
-    // check if the square is pacman
-    if (isPacman(this.tabletopSqrs[newPosition])) {
+    // check if the square is pacman (the origin or the new square)
+    if (
+      isPacman(this.tabletopSqrs[newPosition]) ||
+      isPacman(this.tabletopSqrs[position])
+    ) {
       if (this.tabletopSqrs[newPosition].classList.contains("ghost_scared")) {
         console.log("ghost eat!");
         clearInterval(this.intervalID);
@@ -164,10 +176,10 @@ class Ghost {
 }
 
 const ghosts = [
-  new Ghost("ghost_pink", 349, 200, tabletopSquares),
-  new Ghost("ghost_red", 350, 150, tabletopSquares),
-  new Ghost("ghost_green", 377, 300, tabletopSquares),
-  new Ghost("ghost_black", 378, 150, tabletopSquares),
+  new Ghost("ghost_pink", 348, 600, tabletopSquares, 235),
+  new Ghost("ghost_red", 351, 450, tabletopSquares, 239),
+  new Ghost("ghost_green", 377, 650, tabletopSquares, 292),
+  new Ghost("ghost_black", 378, 550, tabletopSquares, 293),
 ];
 
 ghosts.forEach((ghost) => {
@@ -298,7 +310,7 @@ function pacEatDots(square) {
           "ghost_scared"
         );
         ghost.isScared = false;
-      }, 10000);
+      }, 6000);
     });
   }
   scoreEl.textContent = score;
@@ -330,6 +342,37 @@ function showGameOver(isWin) {
 }
 
 // helpers
+function getCloserDirectionToB(directions, pointB, width) {
+  const directionDistances = directions.map((direction) => {
+    const originCoord = [getX(direction, width), getY(direction, width)];
+    const endCoord = [getX(pointB, width), getY(pointB, width)];
+    const distance = getDistance(originCoord, endCoord);
+    return distance;
+  });
+  const minInd = directionDistances.indexOf(Math.min(...directionDistances));
+  console.log(directions, directions[minInd]);
+  return directions[minInd];
+}
+
+function getX(index, cols) {
+  return index % cols;
+}
+function getY(index, rows) {
+  return parseInt(index / rows);
+}
+
+function getDistance(pointA, pointB) {
+  const [aX, aY] = [...pointA];
+  const [bX, bY] = [...pointB];
+
+  // compare the distance from the coord and asign a final value, to compare later with other points distances.
+  return Math.sqrt(Math.abs(aX - bX) ** 2 + Math.abs(aY - bY) ** 2);
+}
+
+function getPacmanIndex(squares) {
+  return squares.find((square) => square.classList.contains("pacman")).id;
+}
+
 function isGhost(square) {
   return square.classList.contains("ghost");
 }
