@@ -1,6 +1,6 @@
 # Pacman-JS
 
-URL https://espar-rodbar.es/Pacman-JS/
+URL https://espar-rodbar.github.io/Pacman-JS/
 
 A Pacman game made with Vanilla Javascript.
 
